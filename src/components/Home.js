@@ -1,46 +1,48 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "../styles.css";
 
 class Home extends Component {
   state = {
     posts: []
   };
   componentDidMount() {
-    axios
-      .get(
-        "https://newsapi.org/v2/top-headlines?country=in&apiKey=4b18e39dcff44fe999709f920eb3cda7"
-      )
-      .then(res => {
-        this.setState({
-          posts: res.data.articles
-        });
-        console.log(this.state.posts);
+    // console.log(this.props.url);
+
+    axios.get(this.props.url).then(res => {
+      this.setState({
+        posts: res.data.articles.slice(0, 20)
       });
+      // console.log(this.state.posts);
+    });
   }
   render() {
     const { posts } = this.state;
     const postList = posts.length ? (
       posts.map(post => {
         return (
-          <div className="post card" key={post.source.id}>
-            <div className="card-content">
-              <a href={post.url}>
+        <div className="post card" key={post.url}>
+            
+            <div className="card-content ">
+              <a href={post.url} className="red-text">
                 <span className="card-title">{post.title}</span>
               </a>
-              <p>{post.description}</p>
+              <img
+                src={post.urlToImage}
+                alt="images"
+                className="post-card__image "
+                height="55%"
+                width="60%"
+              />
             </div>
+            <p>{post.description}</p>
           </div>
         );
       })
     ) : (
-        <div className="center">No posts yet</div>
-      );
-    return (
-      <div className="container">
-        <h4 className="center">Top headlines of the day!</h4>
-        {postList}
-      </div>
+      <div className="center">No posts yet</div>
     );
+    return <div className="container">{postList}</div>;
   }
 }
 
