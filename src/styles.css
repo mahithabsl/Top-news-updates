@@ -1,4 +1,31 @@
 .App {
-  font-family: sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   text-align: center;
+  background-color: #000 !important;
+}
+
+.bg-danger {
+  background-color: #000 !important;
+}
+.red-heading,
+.red-text {
+  color: #dc3545 !important;
+  margin: auto;
+}
+@media only screen and (max-width: 768px) {
+  .navbar-styles {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    opacity: 0.9;
+  }
+
+  .link-styles {
+    position: absolute;
+    top: 100%;
+    z-index: 10;
+    background: black;
+    width: 100%;
+  }
 }
