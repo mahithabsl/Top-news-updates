@@ -1,21 +1,69 @@
 import React, { Component } from "react";
 import Home from "./components/Home";
-import About from "./components/About";
-import Contact from "./components/Contact";
 import Navbar from "./components/Navbar";
-import Post from "./components/Post";
 import { BrowserRouter, Route } from "react-router-dom";
-
+// import Navbar from "react-bootstrap/Navbar";
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          {/* <Navbar /> */}
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/:post_id" component={Post} />
+          <Navbar />
+          <Route
+            className="navbar"
+            exact
+            path="/"
+            component={() => (
+              <Home
+                url={`https://saurav.tech/NewsAPI/top-headlines/category/general/in.json`}
+              />
+            )}
+          />
+          <Route
+            className="navbar"
+            path="/health"
+            component={() => (
+              <Home
+                url={`https://saurav.tech/NewsAPI/top-headlines/category/health/in.json`}
+              />
+            )}
+          />
+          <Route
+            className="navbar"
+            path="/sports"
+            component={() => (
+              <Home
+                url={`https://saurav.tech/NewsAPI/top-headlines/category/sports/in.json`}
+              />
+            )}
+          />
+          <Route
+            className="navbar"
+            path="/entertain"
+            component={() => (
+              <Home
+                url={`https://saurav.tech/NewsAPI/top-headlines/category/entertainment/in.json`}
+              />
+            )}
+          />
+          <Route
+            className="navbar"
+            path="/tech"
+            component={() => (
+              <Home
+                url={`https://saurav.tech/NewsAPI/top-headlines/category/technology/in.json`}
+              />
+            )}
+          />
+          <Route
+            className="navbar"
+            path="/science"
+            component={() => (
+              <Home
+                url={`https://saurav.tech/NewsAPI/top-headlines/category/science/in.json`}
+              />
+            )}
+          />
         </div>
       </BrowserRouter>
     );
